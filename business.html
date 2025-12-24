@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Growsetu – Business Dashboard</title>
+
+<style>
+/* ---------- GLOBAL ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter', system-ui, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: radial-gradient(circle at top, #0b1b36 0%, #020617 60%, #000 100%);
+  color:#f9fafb;
+}
+
+:root{
+  --green:#22c55e;
+  --muted:#9ca3af;
+  --border:rgba(255,255,255,.08);
+  --card:#0b1220;
+}
+
+/* ---------- NAVBAR ---------- */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 80px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--green);
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:36px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#e5e7eb;
+  font-size:15px;
+  opacity:0.85;
+}
+
+nav a:hover{
+  opacity:1;
+  color:var(--green);
+}
+
+/* ---------- HEADER ---------- */
+.header{
+  padding:60px 24px 30px;
+  text-align:center;
+}
+
+.header h1{
+  font-size:44px;
+  font-weight:800;
+}
+
+.header p{
+  margin-top:14px;
+  max-width:640px;
+  margin-inline:auto;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* ---------- CONTAINER ---------- */
+.container{
+  max-width:760px;
+  margin:0 auto 80px;
+  padding:0 24px;
+}
+
+/* ---------- CARD ---------- */
+.card{
+  background:linear-gradient(180deg,#0b1220,#020617);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:32px;
+}
+
+/* ---------- DASHBOARD ---------- */
+.stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px;
+}
+
+.amount{
+  font-size:34px;
+  font-weight:800;
+}
+
+.trust{
+  color:var(--green);
+  font-weight:700;
+  font-size:18px;
+}
+
+/* ---------- FORM ---------- */
+label{
+  font-size:14px;
+  color:var(--muted);
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin:10px 0 22px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#020617;
+  color:#fff;
+}
+
+.btn{
+  width:100%;
+  padding:16px;
+  border-radius:16px;
+  border:none;
+  background:var(--green);
+  color:#052e16;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#16a34a;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;
+  padding:32px 20px;
+  color:var(--muted);
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Growsetu</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="investor.html">Investor</a></li>
+    <li><a href="admin.html">Admin</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Business Dashboard</h1>
+  <p>
+    Request funding, maintain trust, and grow through royalty-based partnerships.
+  </p>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="card">
+
+    <div class="stat">
+      <div>
+        <div class="amount">₹50,000</div>
+        <div class="small">Current Funding Request</div>
+      </div>
+      <div class="trust">Trust Score: 8</div>
+    </div>
+
+    <label>Funding Amount (₹)</label>
+    <input value="50000">
+
+    <label>Royalty Offered (%)</label>
+    <input value="4.00">
+
+    <button class="btn">Submit Funding Request</button>
+
+  </div>
+</div>
+
+<footer>
+  Verified businesses • Transparent funding • Sustainable growth
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Growsetu – Trust-Based Funding</title>
+
+<style>
+/* ---------- GLOBAL ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: radial-gradient(circle at top, #0b1b36 0%, #020617 60%, #000 100%);
+  color:#f9fafb;
+}
+
+:root{
+  --green:#22c55e;
+  --muted:#9ca3af;
+}
+
+/* ---------- NAVBAR ---------- */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 80px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--green);
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:36px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#e5e7eb;
+  font-size:15px;
+  opacity:0.85;
+}
+
+nav a:hover{
+  opacity:1;
+  color:var(--green);
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:78vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:0 24px;
+}
+
+.hero h1{
+  font-size:58px;
+  font-weight:800;
+  max-width:920px;
+  line-height:1.15;
+}
+
+.hero p{
+  margin-top:22px;
+  font-size:18px;
+  max-width:640px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* ---------- CTA ---------- */
+.cta{
+  margin-top:42px;
+  display:flex;
+  gap:22px;
+}
+
+.btn{
+  padding:15px 36px;
+  border-radius:16px;
+  border:none;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.primary{
+  background:var(--green);
+  color:#052e16;
+}
+
+.primary:hover{
+  background:#16a34a;
+}
+
+.secondary{
+  background:transparent;
+  border:1.6px solid var(--green);
+  color:var(--green);
+}
+
+.secondary:hover{
+  background:rgba(34,197,94,.12);
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  margin-top:40px;
+  padding:32px 20px;
+  text-align:center;
+  font-size:14px;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Growsetu</div>
+  <ul>
+    <li><a href="business.html">For Businesses</a></li>
+    <li><a href="investor.html">For Investors</a></li>
+    <li><a href="admin.html">Admin</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Trust-Based Funding for Small Businesses</h1>
+  <p>
+    Growsetu replaces high-interest loans with royalty-based,
+    escrow-protected funding built on transparency and trust.
+  </p>
+
+  <div class="cta">
+    <a href="business.html">
+      <button class="btn primary">Business View</button>
+    </a>
+    <a href="investor.html">
+      <button class="btn secondary">Investor View</button>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Escrow-backed funding • Royalty-based returns • Verified growth
+</footer>
+
+</body>
+</html>

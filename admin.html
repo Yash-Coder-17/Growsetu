@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Growsetu – Admin Panel</title>
+
+<style>
+/* ---------- GLOBAL ---------- */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter', system-ui, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: radial-gradient(circle at top, #0b1b36 0%, #020617 60%, #000 100%);
+  color:#f9fafb;
+}
+
+:root{
+  --green:#22c55e;
+  --muted:#9ca3af;
+  --border:rgba(255,255,255,.08);
+}
+
+/* ---------- NAV ---------- */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 80px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--green);
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:36px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#e5e7eb;
+  font-size:15px;
+}
+
+/* ---------- HEADER ---------- */
+.header{
+  padding:60px 24px 30px;
+  text-align:center;
+}
+
+.header h1{
+  font-size:44px;
+  font-weight:800;
+}
+
+.header p{
+  margin-top:14px;
+  max-width:720px;
+  margin-inline:auto;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* ---------- CONTAINER ---------- */
+.container{
+  max-width:1100px;
+  margin:0 auto 80px;
+  padding:0 24px;
+}
+
+/* ---------- GRID ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:44px;
+}
+
+/* ---------- PANELS ---------- */
+.panel{
+  background:linear-gradient(180deg,#0b1220,#020617);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+}
+
+/* ---------- QUEUE ---------- */
+.queue-item{
+  padding:18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:#020617;
+  margin-bottom:18px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.queue-item:hover{
+  border-color:rgba(34,197,94,.4);
+}
+
+.queue-item.active{
+  border-color:var(--green);
+}
+
+.queue-meta{
+  margin-top:8px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.status{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:13px;
+  background:rgba(251,191,36,.15);
+  color:#fbbf24;
+}
+
+/* ---------- DETAILS ---------- */
+.trust{
+  color:var(--green);
+  font-weight:700;
+}
+
+.section{
+  margin-top:26px;
+}
+
+.section h4{
+  margin-bottom:10px;
+}
+
+.section ul{
+  padding-left:18px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* ---------- ACTIONS ---------- */
+.actions{
+  margin-top:30px;
+  display:flex;
+  gap:18px;
+}
+
+.btn{
+  padding:14px 32px;
+  border-radius:16px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.primary{
+  background:var(--green);
+  color:#052e16;
+}
+
+.secondary{
+  background:transparent;
+  border:1.5px solid var(--green);
+  color:var(--green);
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;
+  padding:32px 20px;
+  color:var(--muted);
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Growsetu Admin</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="business.html">Business</a></li>
+    <li><a href="investor.html">Investor</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Admin Verification Panel</h1>
+  <p>Click a business from the queue to review details and verify</p>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="grid">
+
+    <!-- LEFT QUEUE -->
+    <div class="panel" id="queuePanel"></div>
+
+    <!-- RIGHT DETAILS -->
+    <div class="panel">
+      <h3 id="bizName">Select a business</h3>
+      <p id="bizAmount"></p>
+      <p>Trust Score: <span class="trust" id="bizTrust"></span></p>
+
+      <div class="section">
+        <h4>KYC Verification</h4>
+        <ul>
+          <li>Aadhaar verified</li>
+          <li>PAN verified</li>
+          <li>Bank / UPI linked</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h4>Usage Proof</h4>
+        <ul>
+          <li>Invoice uploaded</li>
+          <li>Geo-tagged photo uploaded</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary">Approve</button>
+        <button class="btn secondary">Reject</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  Click → Verify → Escrow releases funds automatically
+</footer>
+
+<script>
+const businesses = [
+  { name:"Raj Electronics", amount:50000, trust:8 },
+  { name:"Sharma Kirana", amount:40000, trust:7 },
+  { name:"Khan Auto Garage", amount:60000, trust:9 }
+];
+
+let activeIndex = 0;
+
+function renderQueue(){
+  const panel = document.getElementById("queuePanel");
+  panel.innerHTML = "<h3>Verification Queue</h3>";
+
+  businesses.forEach((b,i)=>{
+    panel.innerHTML += `
+      <div class="queue-item ${i===activeIndex?'active':''}"
+           onclick="selectBusiness(${i})">
+        <strong>${b.name}</strong>
+        <div class="queue-meta">
+          Amount: ₹${b.amount}<br>
+          Trust Score: <span class="trust">${b.trust}</span>
+        </div>
+        <span class="status">Pending</span>
+      </div>
+    `;
+  });
+}
+
+function selectBusiness(index){
+  activeIndex = index;
+  const b = businesses[index];
+
+  document.getElementById("bizName").innerText = b.name;
+  document.getElementById("bizAmount").innerText =
+    "Requested Amount: ₹" + b.amount;
+  document.getElementById("bizTrust").innerText = b.trust;
+
+  renderQueue();
+}
+
+/* INIT */
+selectBusiness(0);
+renderQueue();
+</script>
+
+</body>
+</html>
